@@ -26,6 +26,7 @@ const navItems = [
     { uiSref: "main.org-unit.list", icon: "sitemap", displayName: "Org Units", id: "navbar-org-units" },
     { uiSref: "main.person", icon: "users", displayName: "People", id: "navbar-people" },
     { uiSref: "main.data-type.list", icon: "qrcode", displayName: "Data", id: "navbar-data-types" },
+    { uiSref: "main.app.all" , icon: "desktop", displayName: "Applications", id: "navbar-apps" },
 ];
 
 

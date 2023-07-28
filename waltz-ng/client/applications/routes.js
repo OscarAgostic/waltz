@@ -16,13 +16,13 @@
  *
  */
 
-import { appResolver, appByAssetCodeResolver, orgUnitsResolver } from "./resolvers";
+import {allAppsResolver, appResolver, orgUnitsResolver} from "./resolvers";
 
 import AppViewAssetCode from "./pages/asset-code-view/app-asset-code-view";
 import AppEdit from "./pages/edit/app-edit";
 import AppRegistration from "./pages/registration/app-registration";
 import AppView from "./pages/view/app-view";
-import {activeSections} from "../dynamic-section/section-store";
+import AllAppsView from "./pages/view/all-app-view/all-app-view";
 
 const base = {
     url: "application"
@@ -69,6 +69,14 @@ const appEditState = {
     views: {"content@": AppEdit},
 };
 
+const allAppViewState = {
+    url: "/view-all",
+    resolve: {
+        app: allAppsResolver
+    },
+    views: {"content@": AllAppsView},
+}
+
 
 function setup($stateProvider) {
     $stateProvider
@@ -77,7 +85,8 @@ function setup($stateProvider) {
         .state("main.app.view", appViewState)
         .state("main.app.asset-code", appViewByAssetCodeState)
         .state("main.app.external-id", appViewByExternalIdState)
-        .state("main.app.edit", appEditState);
+        .state("main.app.edit", appEditState)
+        .state("main.app.all", allAppViewState);
 }
 
 

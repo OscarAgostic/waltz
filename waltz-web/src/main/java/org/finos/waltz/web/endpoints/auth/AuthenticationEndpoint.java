@@ -162,13 +162,15 @@ public class AuthenticationEndpoint implements Endpoint {
 
             String accessToken = getAccessToken(OAuthCode, clientId );
             String email = fetchOAuthEmail(accessToken);
-
+            String[] roles = userRoleService
+                    .getUserRoles(email)
+                    .toArray(new String[0]);
             String token = JWT.create()
                     .withIssuer(JWTUtilities.ISSUER)
                     .withSubject(email)
-                    .withArrayClaim("roles", new String[]{""})
+                    .withArrayClaim("roles", roles)
                     .withClaim("displayName", email)
-                    .withClaim("employeeId", "1234")
+                    .withClaim("employeeId", email)
                     .sign(algorithmHS);
 
             return newHashMap("token", token);
@@ -225,7 +227,7 @@ public class AuthenticationEndpoint implements Endpoint {
 
         } catch (IOException | ParseException e) {
             // Log the exception properly, don't just print the stack trace
-            LOG.error("Error getting access token from OAuth provider", e);
+            LOG.error("Error getting access token from OAuth provider: ", e);
         }
         return null;
     }

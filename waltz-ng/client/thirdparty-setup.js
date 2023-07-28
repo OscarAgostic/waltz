@@ -48,10 +48,10 @@ function authProviderSetup($authProvider, BaseUrl) {
     });
 
     $authProvider.oauth2({
-        name: "demo-provider",
-        clientId: "c39a1u5u514bb52ab06",
+        name: "test",
+        clientId: "c39a1ce93114bb52ab06",
         url: '/authentication/oauth',
-        authorizationEndpoint: 'https://waltz.com/login/oauth/authorize',
+        authorizationEndpoint: 'https://github.com/login/oauth/authorize',
         redirectUri: window.location.origin + "/authentication/login",
         optionalUrlParams: ['scope'],
         scope: ['user:email'],

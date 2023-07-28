@@ -31,6 +31,16 @@ export function appResolver(serviceBroker, $stateParams) {
 appResolver.$inject = ["ServiceBroker", "$stateParams"];
 
 
+export function allAppsResolver(serviceBroker) {
+    return serviceBroker
+        .loadViewData(
+            CORE_API.ApplicationStore.findAll,
+        ).then(r => r.data);
+}
+
+allAppsResolver.$inject = ["ServiceBroker"];
+
+
 export function appByAssetCodeResolver(serviceBroker, $stateParams) {
     return serviceBroker
         .loadViewData(
